@@ -1,10 +1,10 @@
-mod vec3_h;
+mod r3_vec;
 mod write_color;
 mod ray_h;
 
-use crate::vec3_h::vec3::Vec3 as color;
-use crate::vec3_h::vec3::Vec3;
-use crate::vec3_h::vec3::unit_vector;
+use crate::r3_vec::r3_vec_ops::r3_vector as color;
+use crate::r3_vec::r3_vec_ops::r3_vector;
+use crate::r3_vec::r3_vector::unit_vector;
 use crate::write_color::write_color::out_color;
 use crate::ray_h::ray::*;
 
@@ -21,11 +21,11 @@ fn main() {
     let viewport_width = aspect_ratio * viewport_height;
     let focal_length = 1.0;
 
-    let origin = Vec3::new(vec!(0.0, 0.0, 0.0));
-    let horizontal = Vec3::new(vec!(viewport_width, 0.0, 0.0));
-    let vertical =Vec3::new(vec!(0.0, viewport_height, 0.0));
+    let origin = r3_vector::new(0.0, 0.0, 0.0);
+    let horizontal = r3_vector::new(viewport_width, 0.0, 0.0);
+    let vertical =r3_vector::new(0.0, viewport_height, 0.0);
     let lower_left_corner = &origin - 
-        &horizontal/2.0 - &vertical/2.0 - Vec3::new(vec!(0.0, 0.0, focal_length));
+        &horizontal/2.0 - &vertical/2.0 - r3_vector::new(0.0, 0.0, focal_length);
 
 
     //Render
@@ -34,8 +34,8 @@ fn main() {
 
     for i in (0..image_height as i32).rev() {
         for  j in 0..image_width {
-            let start = Vec3::new(vec!(0.0, 0.0, 0.0));
-            let org = Vec3::new(vec!(0.0, 0.0, 0.0));
+            let start = r3_vector::new(0.0, 0.0, 0.0);
+            let org = r3_vector::new(0.0, 0.0, 0.0);
             let u = j as f64 / (image_width-1) as f64;
             let v = i as f64 / (image_height-1.0);
             let r = Ray::new(org, &lower_left_corner + &horizontal * u + &vertical * v - &start);
