@@ -1,13 +1,16 @@
-mod vec3_h;
+mod geometry;
 mod write_color;
-mod ray_h;
+mod candle;
 
-use crate::vec3_h::vec3::Vec3 as color;
-use crate::vec3_h::vec3::Vec3;
-use crate::vec3_h::vec3::unit_vector;
+use crate::geometry::euclid::Vec3 as color;
+use crate::geometry::euclid::Vec3;
+use crate::geometry::euclid::unit_vector;
 use crate::write_color::write_color::out_color;
-use crate::ray_h::ray::*;
+use crate::candle::light_ray::*;
 
+// Main generates an image in the PPM format with ray tracing
+// In Bash use Cargo Run > image.ppm to create an image file with code out put
+// You may need to find a ppm viewer file online
 
 fn main() {
     
